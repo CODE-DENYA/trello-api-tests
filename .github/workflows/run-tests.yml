@@ -1,0 +1,32 @@
+name: Trello API Tests
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Клонирование репозитория
+      uses: actions/checkout@v4
+
+    - name: Установка Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Установка зависимостей
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Запуск автотестов Pytest
+      env:
+        TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
+        TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+      run: |
+        pytest
