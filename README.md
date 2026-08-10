@@ -64,7 +64,7 @@
 ## 🚀 Локальный запуск тестов
 
 ### 1. Клонирование репозитория
-    git clone [https://github.com/CODE-DENYA/trello-api-tests.git](https://github.com/CODE-DENYA/trello-api-tests.git)
+    git clone https://github.com/CODE-DENYA/trello-api-tests.git
     cd trello-api-tests
 
 ### 2. Установка зависимостей
