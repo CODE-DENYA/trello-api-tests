@@ -64,19 +64,33 @@
 ## 🚀 Локальный запуск тестов
 
 ### 1. Клонирование репозитория
-    git clone https://github.com/CODE-DENYA/trello-api-tests.git
-    cd trello-api-tests
+```bash
+git clone [https://github.com/CODE-DENYA/trello-api-tests.git](https://github.com/CODE-DENYA/trello-api-tests.git)
+cd trello-api-tests
+```
 
 ### 2. Установка зависимостей
-    python -m venv venv
-    .\venv\Scripts\activate
-    pip install -r requirements.txt
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
 
 ### 3. Настройка переменных окружения
-Создай файл .env в корне проекта на основе .env.example:
-    TRELLO_API_KEY=ваш_api_key
-    TRELLO_TOKEN=ваш_token
+Создай файл `.env` в корне проекта на основе `.env.example`:
+```bash
+cp .env.example .env
+```
+*(Для PowerShell в Windows: `Copy-Item .env.example .env`)*
 
-### 4. Запуск тестов и отчёта
-    pytest
-    allure serve allure-results
+Укажи свои ключи Trello API в файле `.env`:
+```env
+TRELLO_API_KEY=ваш_api_key
+TRELLO_TOKEN=ваш_token
+```
+
+### 4. Запуск тестов и генерация отчёта
+```bash
+pytest
+allure serve allure-results
+```
