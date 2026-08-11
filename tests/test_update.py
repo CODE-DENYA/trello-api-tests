@@ -16,6 +16,7 @@ class TestTrelloUpdate:
 
         # 2. Проверяем обновленные данные через GET
         get_res = api_client.get_board(board_id)
+        assert get_res.status_code == 200, f"Ошибка получения доски: {get_res.text}"
         board_data = get_res.json()
         assert board_data["name"] == new_name
         assert board_data["desc"] == new_desc
@@ -25,11 +26,18 @@ class TestTrelloUpdate:
         board_id = test_board["id"]
 
         # 1. Создаем два списка: "To Do" и "Done"
-        list_todo_id = api_client.create_list(board_id, "To Do").json()["id"]
-        list_done_id = api_client.create_list(board_id, "Done").json()["id"]
+        res_todo = api_client.create_list(board_id, "To Do")
+        assert res_todo.status_code == 200, f"Ошибка создания списка 'To Do': {res_todo.text}"
+        list_todo_id = res_todo.json()["id"]
+
+        res_done = api_client.create_list(board_id, "Done")
+        assert res_done.status_code == 200, f"Ошибка создания списка 'Done': {res_done.text}"
+        list_done_id = res_done.json()["id"]
 
         # 2. Создаем карточку в списке "To Do"
-        card_id = api_client.create_card(list_todo_id, "Задача для переноса").json()["id"]
+        res_card = api_client.create_card(list_todo_id, "Задача для переноса")
+        assert res_card.status_code == 200, f"Ошибка создания карточки: {res_card.text}"
+        card_id = res_card.json()["id"]
 
         # 3. Перемещаем карточку в список "Done" и меняем имя
         update_res = api_client.update_card(
@@ -40,6 +48,8 @@ class TestTrelloUpdate:
         assert update_res.status_code == 200, f"Ошибка перемещения карточки: {update_res.text}"
 
         # 4. Проверяем, что idList и name действительно изменились
-        card_data = api_client.get_card(card_id).json()
+        get_card_res = api_client.get_card(card_id)
+        assert get_card_res.status_code == 200, f"Ошибка получения карточки: {get_card_res.text}"
+        card_data = get_card_res.json()
         assert card_data["idList"] == list_done_id
         assert card_data["name"] == "Задача выполнена"

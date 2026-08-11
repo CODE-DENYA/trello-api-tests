@@ -1,3 +1,4 @@
+import uuid
 import pytest
 from api.trello_api import TrelloAPI
 
@@ -9,12 +10,16 @@ def api_client():
 
 @pytest.fixture
 def test_board(api_client):
-    # Setup: создание доски перед запуском теста
-    board_res = api_client.create_board("Fixture Test Board")
+    # Setup: генерация уникального имени и создание доски перед тестом
+    unique_name = f"Test_Board_{uuid.uuid4().hex[:6]}"
+    board_res = api_client.create_board(unique_name)
     assert board_res.status_code == 200, f"Ошибка создания доски в фикстуре: {board_res.text}"
     board_data = board_res.json()
 
     yield board_data  # Передаем данные созданной доски в тест
 
-    # Teardown: автоматическое удаление доски после выполнения теста
-    api_client.delete_board(board_data["id"])
+    # Teardown: безопасное автоматическое удаление доски после теста
+    try:
+        api_client.delete_board(board_data["id"])
+    except Exception:
+        pass

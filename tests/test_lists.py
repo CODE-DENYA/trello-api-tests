@@ -11,7 +11,8 @@ class TestTrelloLists:
         # Создаем 2 кастомных списка
         list_names = ["In Progress", "Code Review"]
         for name in list_names:
-            api_client.create_list(board_id, name)
+            res = api_client.create_list(board_id, name)
+            assert res.status_code == 200, f"Ошибка создания списка '{name}': {res.text}"
 
         # Запрашиваем списки с доски
         response = api_client.get_board_lists(board_id)
@@ -29,6 +30,7 @@ class TestTrelloLists:
 
         # 1. Создаем список
         list_res = api_client.create_list(board_id, "List to Archive")
+        assert list_res.status_code == 200, f"Ошибка создания списка: {list_res.text}"
         list_id = list_res.json()["id"]
 
         # 2. Архивируем список
