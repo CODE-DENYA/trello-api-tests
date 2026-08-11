@@ -65,7 +65,7 @@
 
 ### 1. Клонирование репозитория
 ```bash
-git clone [https://github.com/CODE-DENYA/trello-api-tests.git](https://github.com/CODE-DENYA/trello-api-tests.git)
+git clone https://github.com/CODE-DENYA/trello-api-tests.git
 cd trello-api-tests
 ```
 
