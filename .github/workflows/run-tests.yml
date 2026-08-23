@@ -5,6 +5,8 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
+  schedule:
+    - cron: '0 3 * * *' # Автоматический ночной запуск каждый день в 3:00 UTC
 
 permissions:
   contents: write
@@ -34,6 +36,14 @@ jobs:
       run: |
         pytest
       continue-on-error: true
+
+    - name: Сохранение результатов Allure в артефакты GitHub Actions
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: allure-results
+        path: allure-results
+        retention-days: 10
 
     - name: Выкачивание истории прошлых отчётов Allure
       uses: actions/checkout@v4

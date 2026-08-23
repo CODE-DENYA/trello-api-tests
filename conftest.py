@@ -1,6 +1,9 @@
+import logging
 import uuid
 import pytest
 from api.trello_api import TrelloAPI
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.fixture
@@ -18,8 +21,8 @@ def test_board(api_client):
 
     yield board_data  # Передаем данные созданной доски в тест
 
-    # Teardown: безопасное автоматическое удаление доски после теста
+    # Teardown: безопасное автоматическое удаление доски после теста с логированием
     try:
         api_client.delete_board(board_data["id"])
-    except Exception:
-        pass
+    except Exception as e:
+        logger.warning(f"Не удалось удалить тестовую доску ID '{board_data.get('id')}': {e}")

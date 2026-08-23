@@ -12,10 +12,10 @@
 
 * **Язык:** Python 3.12
 * **Фреймворк тестирования:** Pytest
-* **HTTP-клиент:** Requests
+* **HTTP-клиент:** Requests (с сессиями Keep-Alive и таймаутами)
 * **Валидация контрактов (JSON Schema):** jsonschema
-* **Отчётность:** Allure Framework (allure.step)
-* **CI/CD:** GitHub Actions + GitHub Pages
+* **Отчётность:** Allure Framework (детализация шагов, логирование запросов/ответов)
+* **CI/CD:** GitHub Actions (регулярный прогон по расписанию) + GitHub Pages
 
 ---
 
@@ -31,7 +31,7 @@
 4. **Интеграционный E2E сценарий:**
    * Полный жизненный цикл: Создание доски -> Создание списка -> Создание карточки -> Чтение карточки.
 5. **Контрактное тестирование (test_schema.py):**
-   * Строгая проверка структуры и типов данных JSON-ответов сервера с помощью JSON Schema.
+   * Строгая проверка структуры и типов данных JSON-ответов сервера (Boards, Lists, Cards) с помощью JSON Schema.
 
 ---
 
@@ -42,11 +42,13 @@
     │   └── workflows/
     │       └── run-tests.yml     # CI/CD пайплайн для запуска тестов и деплоя отчёта
     ├── api/
-    │   └── trello_api.py         # API-клиент с обёрткой в @allure.step
+    │   └── trello_api.py         # API-клиент (Session, Timeout, @allure.step, attachment)
     ├── config/
-    │   └── config.py             # Загрузка конфигурации из .env
+    │   └── config.py             # Загрузка и валидация конфигурации из .env
     ├── schemas/
-    │   └── board_schema.py       # JSON-схемы для валидации контрактов
+    │   ├── board_schema.py       # JSON-схема структуры доски
+    │   ├── card_schema.py        # JSON-схема структуры карточки
+    │   └── list_schema.py        # JSON-схема структуры списка
     ├── tests/
     │   ├── test_boards.py        # Позитивный E2E тест
     │   ├── test_lists.py         # Тесты работы со списками

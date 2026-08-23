@@ -1,3 +1,4 @@
+import json
 import allure
 import requests
 from config.config import Config
@@ -7,19 +8,43 @@ class TrelloAPI:
     def __init__(self):
         self.base_url = Config.BASE_URL
         self.auth_params = Config.AUTH_PARAMS
+        self.session = requests.Session()
 
-    def _request(self, method: str, endpoint: str, params: dict = None, use_auth: bool = True):
+    def _request(self, method: str, endpoint: str, params: dict | None = None, use_auth: bool = True):
         url = f"{self.base_url}{endpoint}"
         final_params = {}
         if use_auth:
             final_params.update(self.auth_params)
         if params:
             final_params.update(params)
-        return requests.request(method, url, params=final_params)
+
+        response = self.session.request(method, url, params=final_params, timeout=10)
+
+        # Прикрепление деталей запроса и ответа в Allure
+        allure.attach(
+            f"URL: {response.url}\nMethod: {method}\nStatus: {response.status_code}",
+            name="Request Details",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+
+        try:
+            allure.attach(
+                json.dumps(response.json(), indent=2, ensure_ascii=False),
+                name="Response Body",
+                attachment_type=allure.attachment_type.JSON,
+            )
+        except Exception:
+            allure.attach(
+                response.text,
+                name="Response Text",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+
+        return response
 
     # --- ДОСКИ (BOARDS) ---
     @allure.step("API: Создание доски '{name}'")
-    def create_board(self, name: str = None, params: dict = None, use_auth: bool = True):
+    def create_board(self, name: str | None = None, params: dict | None = None, use_auth: bool = True):
         request_params = {}
         if name is not None:
             request_params["name"] = name
@@ -28,7 +53,7 @@ class TrelloAPI:
         return self._request("POST", "/boards", params=request_params, use_auth=use_auth)
 
     @allure.step("API: Получение информации о доске ID '{board_id}'")
-    def get_board(self, board_id: str, params: dict = None, use_auth: bool = True):
+    def get_board(self, board_id: str, params: dict | None = None, use_auth: bool = True):
         return self._request("GET", f"/boards/{board_id}", params=params, use_auth=use_auth)
 
     @allure.step("API: Обновление параметров доски ID '{board_id}'")
@@ -36,7 +61,7 @@ class TrelloAPI:
         return self._request("PUT", f"/boards/{board_id}", params=kwargs)
 
     @allure.step("API: Удаление доски ID '{board_id}'")
-    def delete_board(self, board_id: str, params: dict = None, use_auth: bool = True):
+    def delete_board(self, board_id: str, params: dict | None = None, use_auth: bool = True):
         return self._request("DELETE", f"/boards/{board_id}", params=params, use_auth=use_auth)
 
     # --- СПИСКИ (LISTS) ---
@@ -70,5 +95,5 @@ class TrelloAPI:
 
     # --- ПОЛЬЗОВАТЕЛИ (MEMBERS) ---
     @allure.step("API: Получение профиля пользователя")
-    def get_member(self, member_id: str = "me", params: dict = None, use_auth: bool = True):
+    def get_member(self, member_id: str = "me", params: dict | None = None, use_auth: bool = True):
         return self._request("GET", f"/members/{member_id}", params=params, use_auth=use_auth)
