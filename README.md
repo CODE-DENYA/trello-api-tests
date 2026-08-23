@@ -1,8 +1,8 @@
 # 🚀 Trello API Automated Testing Framework
 
-[![Trello API Tests](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml)
+Проект по автоматизации тестирования REST API сервиса [Trello](https://trello.com) с использованием **Python**, **Pytest**, **Requests** и **Allure**.
 
-[![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://code-denya.github.io/trello-api-tests/)
+[![Trello API Tests](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml) [![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://code-denya.github.io/trello-api-tests/)
 
 ---
 
