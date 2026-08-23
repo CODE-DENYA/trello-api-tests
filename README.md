@@ -95,26 +95,41 @@ trello-api-tests/
 
 ## 🚀 Локальный запуск
 
-### 1. Клонирование репозитория и установка зависимостей
+### 1. Клонирование репозитория
 ```bash
 git clone https://github.com/CODE-DENYA/trello-api-tests.git
 cd trello-api-tests
+```
 
+### 2. Создание и активация виртуального окружения
+```bash
 python -m venv venv
-# На Windows (PowerShell):
-.\venv\Scripts\activate
-# На macOS / Linux:
-# source venv/bin/activate
+```
+* **Windows (PowerShell):**
+  ```powershell
+  .\venv\Scripts\activate
+  ```
+* **macOS / Linux / Git Bash:**
+  ```bash
+  source venv/bin/activate
+  ```
 
+### 3. Установка зависимостей
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Настройка переменных окружения
+### 4. Настройка переменных окружения
 Создайте файл `.env` в корне проекта на основе шаблона `.env.example`:
-```bash
-cp .env.example .env
-```
-*(Для PowerShell в Windows: `Copy-Item .env.example .env`)*
+
+* **macOS / Linux / Git Bash:**
+  ```bash
+  cp .env.example .env
+  ```
+* **Windows (PowerShell):**
+  ```powershell
+  Copy-Item .env.example .env
+  ```
 
 Заполните ваши реальные ключи Trello API в файле `.env`:
 ```env
@@ -123,7 +138,7 @@ TRELLO_TOKEN=ваш_token_сюда
 TRELLO_BASE_URL=https://api.trello.com/1
 ```
 
-### 3. Запуск тестов
+### 5. Запуск тестов
 * **Запуск всех тестов:**
   ```bash
   pytest
