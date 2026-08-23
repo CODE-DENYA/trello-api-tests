@@ -1,5 +1,6 @@
 import allure
 from jsonschema import validate
+
 from schemas.board_schema import BOARD_SCHEMA
 from schemas.card_schema import CARD_SCHEMA
 from schemas.list_schema import LIST_SCHEMA

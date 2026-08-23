@@ -1,4 +1,6 @@
 import os
+from typing import ClassVar
+
 from dotenv import load_dotenv
 
 # Загружаем переменные окружения из файла .env
@@ -15,7 +17,7 @@ class Config:
         raise ValueError("Ошибка: TRELLO_API_KEY и TRELLO_TOKEN должны быть заданы в .env или Secrets")
 
     # Формируем параметры авторизации для каждого REST API запроса
-    AUTH_PARAMS = {
+    AUTH_PARAMS: ClassVar[dict[str, str]] = {
         "key": API_KEY,
-        "token": TOKEN
+        "token": TOKEN,
     }

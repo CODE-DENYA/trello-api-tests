@@ -29,6 +29,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Проверка кода линтером Ruff
+      run: ruff check .
+
     - name: Запуск автотестов Pytest
       env:
         TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
