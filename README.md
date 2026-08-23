@@ -60,6 +60,7 @@
 
 ## 📁 Структура проекта
 
+```text
 trello-api-tests/
 ├── .github/
 │   └── workflows/
@@ -88,13 +89,14 @@ trello-api-tests/
 ├── pytest.ini                   # Конфигурация Pytest и Allure
 ├── requirements.txt             # Зависимости проекта
 └── README.md                    # Документация проекта
+```
 
 ---
 
 ## 🚀 Локальный запуск
 
 ### 1. Клонирование репозитория и установка зависимостей
-
+```bash
 git clone https://github.com/CODE-DENYA/trello-api-tests.git
 cd trello-api-tests
 
@@ -105,29 +107,39 @@ python -m venv venv
 # source venv/bin/activate
 
 pip install -r requirements.txt
+```
 
 ### 2. Настройка переменных окружения
 Создайте файл `.env` в корне проекта на основе шаблона `.env.example`:
-
+```bash
 cp .env.example .env
-
+```
 *(Для PowerShell в Windows: `Copy-Item .env.example .env`)*
 
 Заполните ваши реальные ключи Trello API в файле `.env`:
-
+```env
 TRELLO_API_KEY=ваш_api_key_сюда
 TRELLO_TOKEN=ваш_token_сюда
 TRELLO_BASE_URL=https://api.trello.com/1
+```
 
 ### 3. Запуск тестов
 * **Запуск всех тестов:**
+  ```bash
   pytest
+  ```
 * **Запуск с генерацией Allure-результатов:**
+  ```bash
   pytest --alluredir=allure-results
+  ```
 * **Просмотр Allure-отчета локально:**
+  ```bash
   allure serve allure-results
+  ```
 * **Проверка стиля и качества кода (Ruff):**
+  ```bash
   ruff check .
+  ```
 
 ---
 
