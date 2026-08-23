@@ -1,101 +1,141 @@
-# 🚀 Trello API Automated Testing Framework
+# 🚀 Trello API — API Test Automation Framework
 
-Проект по автоматизации тестирования REST API сервиса [Trello](https://trello.com) с использованием **Python**, **Pytest**, **Requests** и **Allure**.
+Проект по автоматизации тестирования REST API сервиса [Trello](https://trello.com/) с использованием **Python**, **Pytest**, **Requests** и **Allure**.
 
-[![Trello API Tests](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml) [![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://code-denya.github.io/trello-api-tests/)
+[![Trello API Tests](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml/badge.svg)](https://github.com/CODE-DENYA/trello-api-tests/actions/workflows/run-tests.yml)
+[![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://CODE-DENYA.github.io/trello-api-tests/)
 
 ---
 
 ## 🛠 Технологический стек
 
-* **Язык:** Python 3.12
+* **Язык программирования:** Python 3.12
 * **Фреймворк тестирования:** Pytest
-* **HTTP-клиент:** Requests (с сессиями Keep-Alive и таймаутами)
-* **Валидация контрактов (JSON Schema):** jsonschema
-* **Отчётность:** Allure Framework (детализация шагов, логирование запросов/ответов)
-* **CI/CD:** GitHub Actions (регулярный прогон по расписанию) + GitHub Pages
+* **HTTP-клиент:** Requests (с сессиями Keep-Alive, таймаутами и автоматическим ретраем через `HTTPAdapter` и `Retry` для статусов 429, 500, 502, 503, 504)
+* **Контрактное тестирование:** jsonschema (валидация JSON-схем ответов)
+* **Конфигурация:** python-dotenv (безопасное управление переменными окружения из файла `.env`)
+* **Качество кода:** Ruff (линтер)
+* **Отчетность:** Allure Framework (`allure-pytest`) с детализированными шагами (`@allure.step`) и прикреплением запросов/ответов (`allure.attach`)
+* **CI/CD:** GitHub Actions (автоматический прогон по пушам, pull request'ам и ночному расписанию в 3:00 UTC, линтинг и публикация Allure-отчета на GitHub Pages)
 
 ---
 
 ## 🧪 Покрытие тестами
 
-1. **CRUD операции над сущностями Trello (test_boards.py, test_lists.py, test_update.py, test_checklists.py):**
-   * Создание, получение, обновление и удаление досок (Boards) и списков (Lists).
-   * Перенос карточек между списками и управление чек-листами (Parent-Child).
-2. **Негативное тестирование (test_negative.py):**
-   * Проверка ответов сервера при передаче невалидных токенов, несуществующих ID и некорректных параметров (400 Bad Request, 401 Unauthorized, 404 Not Found).
-3. **Параметризованное тестирование (test_parametrized.py):**
-   * Проверка обработки названий с кириллицей, эмодзи, спецсимволами и граничной длиной строк.
-4. **Контрактное тестирование (test_schema.py):**
-   * Строгая проверка структуры и типов данных JSON-ответов сервера (Boards, Lists, Cards) с помощью JSON Schema.
-5. **Фильтрация и Query-параметры (test_query_params.py):**
-   * Проверка корректности проекций данных при передаче фильтра полей (`fields`).
-6. **SLA и Производительность (test_sla.py):**
-   * Контроль времени отклика ключевых эндпоинтов (не более 2.0 с) с фиксацией метрик в Allure.
+Тестовый набор охватывает ключевые сценарии интеграционного, функционального и контрактного тестирования REST API Trello:
+
+### 📋 Управление досками и списками (`tests/test_boards.py`, `tests/test_lists.py`, `tests/test_update.py`, `tests/test_checklists.py`)
+* **Сквозной workflow:** Создание досок, списков (`To Do`) и карточек с валидацией их существования.
+* **Управление списками:** Получение всех колонок доски и архивация списка с проверкой флага `closed: true`.
+* **Обновление данных (PUT):** Изменение названия и описания досок, а также перенос карточек между списками (`idList`) с одновременным переименованием.
+* **Чек-листы:** Создание и проверка элементов структуры чек-листов внутри карточек.
+
+### 🚫 Негативное тестирование (`tests/test_negative.py`)
+* **Несуществующие ресурсы:** Запрос несуществующей доски возвращает статус `404 Not Found`.
+* **Безопасность и авторизация:** Попытка взаимодействия без авторизации или с невалидными учетными данными корректно отклоняется с кодом `401 Unauthorized`.
+* **Валидация параметров:** Обработка запросов с пропущенными обязательными параметрами (`name=None`) с возвратом `400 Bad Request`.
+
+### 🔠 Параметризованные тесты (`tests/test_parametrized.py`)
+* **Граничные значения и кодировки:** Проверка создания досок с именами на кириллице, спецсимволами (`!@#$%^&*()`), эмодзи (`🚀🔥🎯`) и длинными строками (100 символов) с использованием `@pytest.mark.parametrize`.
+
+### 📐 Контрактное тестирование (`tests/test_schema.py`)
+* **Валидация JSON Schema:** Строгая проверка соответствия структур ответа сервера для досок (`BOARD_SCHEMA`), списков (`LIST_SCHEMA`) и карточек (`CARD_SCHEMA`) с помощью библиотеки `jsonschema`.
+
+### 🔍 Фильтрация и Query-параметры (`tests/test_query_params.py`)
+* **Проекция полей:** Проверка работы параметра `fields=name,url` — API возвращает только запрошенные поля и базовый `id`, исключая лишние данные.
+
+### ⚡ SLA и Производительность (`tests/test_sla.py`)
+* **Контроль времени отклика:** Замеры времени выполнения ключевых эндпоинтов (профиль пользователя, чтение доски) с жестким лимитом `< 2.0` секунд и фиксацией метрик в Allure.
+
+---
+
+## 🏗 Архитектурные особенности фреймворка
+
+* **Централизованный API-клиент (`api/trello_api.py`):** Инкапсуляция всех эндпоинтов в класс `TrelloAPI`, автоматическая подстановка ключей авторизации и гибкая настройка сеансов `requests.Session`.
+* **Автоматические ретраи:** Встроенный механизм `HTTPAdapter` с `Retry` для прозрачной обработки временных сетевых сбоев, таймаутов и ограничений rate limit.
+* **Глубокая интеграция с Allure:** Каждый метод клиента фиксирует в отчете URL, HTTP-метод, статус-код, а также тело ответа в формате JSON или текста для быстрой дебаг-аналитики.
+* **Управление тестовыми данными (`conftest.py`):** Фикстура `test_board` автоматически генерирует уникальное имя с помощью `uuid`, создает доску перед тестом и гарантированно удаляет её (Teardown) после выполнения даже в случае падения теста.
 
 ---
 
 ## 📁 Структура проекта
 
-    trello-api-tests/
-    ├── .github/
-    │   └── workflows/
-    │       └── run-tests.yml     # CI/CD пайплайн для запуска тестов и деплоя отчёта
-    ├── api/
-    │   └── trello_api.py         # API-клиент (Session, Timeout, @allure.step, attachment)
-    ├── config/
-    │   └── config.py             # Загрузка и валидация конфигурации из .env
-    ├── schemas/
-    │   ├── board_schema.py       # JSON-схема структуры доски
-    │   ├── card_schema.py        # JSON-схема структуры карточки
-    │   └── list_schema.py        # JSON-схема структуры списка
-    ├── tests/
-    │   ├── test_boards.py        # Позитивный E2E тест
-    │   ├── test_checklists.py    # Тесты управления чек-листами
-    │   ├── test_lists.py         # Тесты работы со списками
-    │   ├── test_negative.py      # Негативные проверки
-    │   ├── test_parametrized.py  # Граничные и параметризованные тесты
-    │   ├── test_query_params.py  # Тесты фильтрации и query-параметров
-    │   ├── test_schema.py        # Тесты валидации JSON Schema
-    │   ├── test_sla.py           # Проверка времени отклика API (SLA)
-    │   └── test_update.py        # Тесты обновления сущностей
-    ├── .env.example              # Шаблон переменных окружения
-    ├── conftest.py               # Pytest-фикстуры (Setup/Teardown)
-    ├── pytest.ini                # Конфигурация Pytest
-    └── requirements.txt          # Зависимости проекта
+trello-api-tests/
+├── .github/
+│   └── workflows/
+│       └── run-tests.yml        # CI/CD пайплайн GitHub Actions
+├── api/
+│   └── trello_api.py            # API-клиент (Requests, ретраи, Allure-шаги)
+├── config/
+│   └── config.py                # Загрузка и валидация конфигурации из .env
+├── schemas/
+│   ├── board_schema.py          # JSON-схема структуры доски
+│   ├── card_schema.py           # JSON-схема структуры карточки
+│   └── list_schema.py           # JSON-схема структуры списка
+├── tests/                       # Автотесты (Pytest)
+│   ├── test_boards.py           # Позитивный E2E-сценарий работы с доской
+│   ├── test_checklists.py       # Тесты управления чек-листами
+│   ├── test_lists.py            # Тесты списков и архивации
+│   ├── test_negative.py         # Негативные проверки (400, 401, 404)
+│   ├── test_parametrized.py     # Параметризованные тесты названий
+│   ├── test_query_params.py     # Проверка query-параметров и фильтрации
+│   ├── test_schema.py           # Контрактное тестирование (JSON Schema)
+│   ├── test_sla.py              # Проверка производительности и SLA
+│   └── test_update.py           # Обновление сущностей и перемещение карточек
+├── .env.example                 # Шаблон переменных окружения
+├── .gitignore                   # Исключения Git
+├── conftest.py                  # Pytest-фикстуры (создание и удаление досок)
+├── pytest.ini                   # Конфигурация Pytest и Allure
+├── requirements.txt             # Зависимости проекта
+└── README.md                    # Документация проекта
 
 ---
 
-## 🚀 Локальный запуск тестов
+## 🚀 Локальный запуск
 
-### 1. Клонирование репозитория
-```bash
+### 1. Клонирование репозитория и установка зависимостей
+
 git clone https://github.com/CODE-DENYA/trello-api-tests.git
 cd trello-api-tests
-```
 
-### 2. Установка зависимостей
-```powershell
 python -m venv venv
+# На Windows (PowerShell):
 .\venv\Scripts\activate
-pip install -r requirements.txt
-```
+# На macOS / Linux:
+# source venv/bin/activate
 
-### 3. Настройка переменных окружения
-Создай файл `.env` в корне проекта на основе `.env.example`:
-```bash
+pip install -r requirements.txt
+
+### 2. Настройка переменных окружения
+Создайте файл `.env` в корне проекта на основе шаблона `.env.example`:
+
 cp .env.example .env
-```
+
 *(Для PowerShell в Windows: `Copy-Item .env.example .env`)*
 
-Укажи свои ключи Trello API в файле `.env`:
-```env
-TRELLO_API_KEY=ваш_api_key
-TRELLO_TOKEN=ваш_token
-```
+Заполните ваши реальные ключи Trello API в файле `.env`:
 
-### 4. Запуск тестов и генерация отчёта
-```bash
-pytest
-allure serve allure-results
-```
+TRELLO_API_KEY=ваш_api_key_сюда
+TRELLO_TOKEN=ваш_token_сюда
+TRELLO_BASE_URL=https://api.trello.com/1
+
+### 3. Запуск тестов
+* **Запуск всех тестов:**
+  pytest
+* **Запуск с генерацией Allure-результатов:**
+  pytest --alluredir=allure-results
+* **Просмотр Allure-отчета локально:**
+  allure serve allure-results
+* **Проверка стиля и качества кода (Ruff):**
+  ruff check .
+
+---
+
+## 🔄 CI/CD Пайплайн
+
+При каждом push, pull request или по ночному расписанию (ежедневно в 3:00 UTC) в GitHub Actions запускается пайплайн:
+1. Разворачивается чистая среда Ubuntu с установленным Python 3.12.
+2. Устанавливаются зависимости проекта из `requirements.txt`.
+3. Выполняется статическая проверка кода линтером **Ruff**.
+4. Запускаются API-тесты с использованием секретов GitHub Actions (`TRELLO_API_KEY`, `TRELLO_TOKEN`).
+5. Генерируется и публикуется актуальный HTML-отчет **Allure Report** на GitHub Pages.
