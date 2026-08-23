@@ -138,3 +138,13 @@ class TrelloAPI:
         use_auth: bool = True,
     ) -> requests.Response:
         return self._request("GET", f"/members/{member_id}", params=params, use_auth=use_auth)
+
+    # --- ЧЕК-ЛИСТЫ (CHECKLISTS) ---
+    @allure.step("API: Создание чек-листа '{name}' в карточке ID '{card_id}'")
+    def create_checklist(self, card_id: str, name: str) -> requests.Response:
+        params = {"idCard": card_id, "name": name}
+        return self._request("POST", "/checklists", params=params)
+
+    @allure.step("API: Получение чек-листа ID '{checklist_id}'")
+    def get_checklist(self, checklist_id: str) -> requests.Response:
+        return self._request("GET", f"/checklists/{checklist_id}")
