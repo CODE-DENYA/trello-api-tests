@@ -1,0 +1,72 @@
+{
+  "id": "6a8ad310f5c7d4bb7350d444",
+  "agent": null,
+  "badges": {
+    "attachments": 0,
+    "fogbugz": "",
+    "checkItems": 0,
+    "checkItemsChecked": 0,
+    "checkItemsEarliestDue": null,
+    "comments": 0,
+    "description": false,
+    "due": null,
+    "dueComplete": false,
+    "lastUpdatedByAi": false,
+    "start": null,
+    "externalSource": null,
+    "attachmentsByType": {
+      "trello": {
+        "board": 0,
+        "card": 0
+      }
+    },
+    "location": false,
+    "votes": 0,
+    "maliciousAttachments": 0,
+    "viewingMemberVoted": false,
+    "subscribed": false
+  },
+  "checkItemStates": [],
+  "closed": false,
+  "dueComplete": false,
+  "dateLastActivity": "2026-08-23T11:01:36.867Z",
+  "desc": "",
+  "descData": {
+    "emoji": {}
+  },
+  "due": null,
+  "dueReminder": null,
+  "email": null,
+  "idBoard": "6a8ad310b66b5ef6fa2e6e89",
+  "idChecklists": [],
+  "idList": "6a8ad3102cc769a56fa23d9f",
+  "idMembers": [],
+  "idMembersVoted": [],
+  "idShort": 1,
+  "idAttachmentCover": null,
+  "labels": [],
+  "idLabels": [],
+  "manifest": null,
+  "manualCoverAttachment": false,
+  "name": "Task #1: Run Tests",
+  "nodeId": "ari:cloud:trello::card/workspace/6a79eeb5a21df8464e422000/6a8ad310f5c7d4bb7350d444",
+  "pinned": false,
+  "pos": 140737488355328,
+  "shortLink": "2s8xbNqN",
+  "shortUrl": "https://trello.com/c/2s8xbNqN",
+  "start": null,
+  "subscribed": false,
+  "url": "https://trello.com/c/2s8xbNqN/1-task-1-run-tests",
+  "cover": {
+    "idAttachment": null,
+    "color": null,
+    "idUploadedBackground": null,
+    "size": "normal",
+    "brightness": "dark",
+    "yPosition": 0.5,
+    "idPlugin": null
+  },
+  "isTemplate": false,
+  "cardRole": null,
+  "mirrorSourceId": null
+}
