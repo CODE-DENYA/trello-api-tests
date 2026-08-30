@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6a939d5414b62f204b3b3d9b",
+  "name": "Done",
+  "closed": false,
+  "color": null,
+  "idBoard": "6a939d53aca75c39bcf51723",
+  "pos": 140737488322560,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
