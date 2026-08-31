@@ -1,0 +1,3 @@
+URL: https://api.trello.com/1/boards?key=e2d481a4958d6c912c06e0499d0e0403&token=ATTA71348f3576699bda0383c6fea86afb127778c343b6e9b1c9a6b1f80f1a45059e9DE00228&name=Test_Board_140aa4
+Method: POST
+Status: 200
