@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6a99043efff79fd35d885289",
+  "name": "Schema Test List",
+  "closed": false,
+  "color": null,
+  "idBoard": "6a99043ecf09051c89740229",
+  "pos": 140737488338944,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
