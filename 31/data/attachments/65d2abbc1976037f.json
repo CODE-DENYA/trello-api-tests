@@ -1,0 +1,72 @@
+{
+  "id": "6a9b866a1b8a8e8dc34441c1",
+  "agent": null,
+  "badges": {
+    "attachments": 0,
+    "fogbugz": "",
+    "checkItems": 0,
+    "checkItemsChecked": 0,
+    "checkItemsEarliestDue": null,
+    "comments": 0,
+    "description": false,
+    "due": null,
+    "dueComplete": false,
+    "lastUpdatedByAi": false,
+    "start": null,
+    "externalSource": null,
+    "attachmentsByType": {
+      "trello": {
+        "board": 0,
+        "card": 0
+      }
+    },
+    "location": false,
+    "votes": 0,
+    "maliciousAttachments": 0,
+    "viewingMemberVoted": false,
+    "subscribed": false
+  },
+  "checkItemStates": [],
+  "closed": false,
+  "dueComplete": false,
+  "dateLastActivity": "2026-09-05T03:03:07.106Z",
+  "desc": "",
+  "descData": {
+    "emoji": {}
+  },
+  "due": null,
+  "dueReminder": null,
+  "email": null,
+  "idBoard": "6a9b86694423854cf16ec88f",
+  "idChecklists": [],
+  "idList": "6a9b866af34f01be63e52cbb",
+  "idMembers": [],
+  "idMembersVoted": [],
+  "idShort": 1,
+  "idAttachmentCover": null,
+  "labels": [],
+  "idLabels": [],
+  "manifest": null,
+  "manualCoverAttachment": false,
+  "name": "Задача выполнена",
+  "nodeId": "ari:cloud:trello::card/workspace/6a79eeb5a21df8464e422000/6a9b866a1b8a8e8dc34441c1",
+  "pinned": false,
+  "pos": 140737488355328,
+  "shortLink": "zZL8dpS1",
+  "shortUrl": "https://trello.com/c/zZL8dpS1",
+  "start": null,
+  "subscribed": false,
+  "url": "https://trello.com/c/zZL8dpS1/1-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B0-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B0",
+  "cover": {
+    "idAttachment": null,
+    "color": null,
+    "idUploadedBackground": null,
+    "size": "normal",
+    "brightness": "dark",
+    "yPosition": 0.5,
+    "idPlugin": null
+  },
+  "isTemplate": false,
+  "cardRole": null,
+  "mirrorSourceId": null
+}

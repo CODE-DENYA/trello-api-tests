@@ -1,0 +1,93 @@
+{
+  "id": "6a79eeb4d42eceef591d13a3",
+  "aaId": "712020:e50a883d-ccce-4c32-a313-be88f0a60572",
+  "activityBlocked": false,
+  "avatarHash": "6342f4ef8386bc61c32ba60d1beb996a",
+  "avatarUrl": "https://trello-members.s3.amazonaws.com/6a79eeb4d42eceef591d13a3/6342f4ef8386bc61c32ba60d1beb996a",
+  "bio": "",
+  "bioData": null,
+  "confirmed": true,
+  "fullName": "CODE-DENYA",
+  "idEnterprise": null,
+  "idEnterprisesDeactivated": [],
+  "idMemberReferrer": null,
+  "idPremOrgsAdmin": [],
+  "initials": "C",
+  "memberType": "normal",
+  "nonPublic": {},
+  "nonPublicAvailable": true,
+  "products": [],
+  "url": "https://trello.com/u/codedenya",
+  "username": "codedenya",
+  "dateLastImpression": "2026-08-23T13:10:53.608Z",
+  "status": "disconnected",
+  "aaBlockSyncUntil": null,
+  "aaEmail": "bumingshisamurai@gmail.com",
+  "aaEnrolledDate": null,
+  "avatarSource": "none",
+  "credentialsRemovedCount": 0,
+  "dateLastActive": "2026-09-05T03:02:56.138Z",
+  "domainClaimed": null,
+  "email": "bumingshisamurai@gmail.com",
+  "gravatarHash": "47bc04fc09a49506473169f9439242f1",
+  "idBoards": [
+    "6a79eeb5a21df8464e422052",
+    "6a9b866717b7b0e9f62d657d"
+  ],
+  "idOrganizations": [
+    "6a79eeb5a21df8464e422000"
+  ],
+  "idEnterprisesAdmin": [],
+  "limits": {
+    "boards": {
+      "totalPerMember": {
+        "status": "ok",
+        "disableAt": 4500,
+        "warnAt": 3600
+      }
+    },
+    "orgs": {
+      "totalPerMember": {
+        "status": "ok",
+        "disableAt": 850,
+        "warnAt": 680
+      }
+    }
+  },
+  "loginTypes": [
+    "atlassian"
+  ],
+  "marketingOptIn": {
+    "optedIn": true,
+    "date": "2026-08-10T18:39:47.129Z"
+  },
+  "messagesDismissed": [],
+  "nodeId": "ari:cloud:trello::user/6a79eeb4d42eceef591d13a3",
+  "oneTimeMessagesDismissed": [
+    "default-board-6a79eeb5a21df8464e422052",
+    "getting-started-list-6a79eeb5a21df8464e422089",
+    "premium-trial-modal-message-dismissed-for-ws-6a79eeb5a21df8464e422000",
+    "new-user-spotlight-tour",
+    "sent-possible-new-signup-event"
+  ],
+  "sessionType": null,
+  "prefs": {
+    "sendSummaries": true,
+    "minutesBetweenSummaries": 60,
+    "minutesBeforeDeadlineToNotify": 60,
+    "colorBlind": false,
+    "keyboardShortcutsEnabled": true,
+    "locale": "ru",
+    "timezoneInfo": {},
+    "privacy": {
+      "fullName": "public",
+      "avatar": "public"
+    }
+  },
+  "trophies": [],
+  "uploadedAvatarHash": null,
+  "uploadedAvatarUrl": null,
+  "premiumFeatures": [],
+  "isAaMastered": true,
+  "ixUpdate": "2047"
+}
