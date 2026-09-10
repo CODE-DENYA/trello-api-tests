@@ -1,0 +1,1 @@
+WARNING  urllib3.connectionpool:connectionpool.py:869 Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /1/boards/600000000000000000000000?key=e2d481a4958d6c912c06e0499d0e0403&token=ATTA71348f3576699bda0383c6fea86afb127778c343b6e9b1c9a6b1f80f1a45059e9DE00228
