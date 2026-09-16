@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6aaa4c7f12df714f9d3be3aa",
+  "name": "List to Archive",
+  "closed": false,
+  "color": null,
+  "idBoard": "6aaa4c7fa9990693ff7f24d8",
+  "pos": 140737488338944,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
