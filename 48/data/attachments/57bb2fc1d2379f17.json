@@ -1,0 +1,72 @@
+[
+  {
+    "id": "6ab235e3f8d44fb2a3b22cb3",
+    "name": "Code Review",
+    "closed": false,
+    "color": null,
+    "idBoard": "6ab235e24455874e272d299a",
+    "pos": 140737488322560,
+    "subscribed": false,
+    "softLimit": null,
+    "type": null,
+    "datasource": {
+      "filter": false
+    }
+  },
+  {
+    "id": "6ab235e329008edbe0004552",
+    "name": "In Progress",
+    "closed": false,
+    "color": null,
+    "idBoard": "6ab235e24455874e272d299a",
+    "pos": 140737488338944,
+    "subscribed": false,
+    "softLimit": null,
+    "type": null,
+    "datasource": {
+      "filter": false
+    }
+  },
+  {
+    "id": "6ab235e24455874e272d29a0",
+    "name": "Нужно сделать",
+    "closed": false,
+    "color": null,
+    "idBoard": "6ab235e24455874e272d299a",
+    "pos": 140737488355328,
+    "subscribed": false,
+    "softLimit": null,
+    "type": null,
+    "datasource": {
+      "filter": false
+    }
+  },
+  {
+    "id": "6ab235e24455874e272d29a1",
+    "name": "В процессе",
+    "closed": false,
+    "color": null,
+    "idBoard": "6ab235e24455874e272d299a",
+    "pos": 140737488371712,
+    "subscribed": false,
+    "softLimit": null,
+    "type": null,
+    "datasource": {
+      "filter": false
+    }
+  },
+  {
+    "id": "6ab235e24455874e272d29a2",
+    "name": "Готово",
+    "closed": false,
+    "color": null,
+    "idBoard": "6ab235e24455874e272d299a",
+    "pos": 140737488388096,
+    "subscribed": false,
+    "softLimit": null,
+    "type": null,
+    "datasource": {
+      "filter": false
+    }
+  }
+]
