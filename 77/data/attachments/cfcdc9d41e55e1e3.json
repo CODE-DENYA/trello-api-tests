@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6ad8722da54719352d76ca45",
+  "name": "In Progress",
+  "closed": false,
+  "color": null,
+  "idBoard": "6ad8722df2a7675566f8bf59",
+  "pos": 140737488338944,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
