@@ -1,0 +1,12 @@
+{
+  "id": "6ae70bc5f70562708e712876",
+  "name": "List to Archive",
+  "closed": true,
+  "color": null,
+  "idBoard": "6ae70bc4c65c41ebb505a3c8",
+  "pos": 140737488338944,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
