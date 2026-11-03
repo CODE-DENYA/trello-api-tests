@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6ae9b3f6c564f9fe7f1402c1",
+  "name": "Code Review",
+  "closed": false,
+  "color": null,
+  "idBoard": "6ae9b3f5b1afcfaf014df387",
+  "pos": 140737488322560,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
