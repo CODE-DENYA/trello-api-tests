@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6aeda5c26169861198fd99da",
+  "name": "To Do",
+  "closed": false,
+  "color": null,
+  "idBoard": "6aeda5c20192ccea0b93885d",
+  "pos": 140737488338944,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}

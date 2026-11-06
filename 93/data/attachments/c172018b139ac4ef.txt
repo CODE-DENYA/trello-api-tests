@@ -1,0 +1,3 @@
+URL: https://api.trello.com/1/members/me?key=invalid_key_123&token=invalid_token_123
+Method: GET
+Status: 401
