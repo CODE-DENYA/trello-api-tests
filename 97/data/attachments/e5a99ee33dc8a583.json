@@ -1,0 +1,15 @@
+{
+  "limits": {},
+  "id": "6af2f34f16e551b507559cd9",
+  "name": "List for Checklist",
+  "closed": false,
+  "color": null,
+  "idBoard": "6af2f34fb2505a85e3a920df",
+  "pos": 140737488338944,
+  "subscribed": false,
+  "softLimit": null,
+  "type": null,
+  "datasource": {
+    "filter": false
+  }
+}
