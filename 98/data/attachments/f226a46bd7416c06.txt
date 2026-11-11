@@ -1,0 +1,3 @@
+URL: https://api.trello.com/1/boards?name=Unauthorized+Board
+Method: POST
+Status: 401
